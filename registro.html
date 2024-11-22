@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro en Ayrton</title>
+    <link rel="stylesheet" href="/styles/styles3.css"> 
+</head>
+<body>
+
+    <div class="register-container">
+        <h2 class="title"> Ayrton</h2>
+        <p class="subtitle">Completa los datos para crear tu cuenta.</p>
+
+        <form id="registroForm" class="register-form">
+            <!-- Nombre Completo -->
+            <div class="form-section">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-input" required placeholder="Ingresa tu nombre completo">
+            </div>
+            <!-- Apellido Completo -->
+            <div class="form-section">
+                <label for="nombre" class="form-label">Apellido:</label>
+                <input type="text" id="nombre" name="nombre" class="form-input" required placeholder="Ingresa su Apellido">
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div class="form-section">
+                <label for="email" class="form-label">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="Correo electrónico">
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-section">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" id="password" name="password" class="form-input" required placeholder=" 20 caracteres entre letras y caracteres">
+            </div>
+
+            <!-- Confirmar Contraseña -->
+            <div class="form-section">
+                <label for="confirmPassword" class="form-label">Confirmar Contraseña:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required placeholder="Confirma tu contraseña">
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="form-section">
+                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-input" required>
+            </div>
+
+            <!-- Preferencias de Notificación -->
+            <div class="form-section">
+                <label for="notificaciones" class="form-label">¿Deseas recibir notificaciones?</label>
+                <select id="notificaciones" name="notificaciones" class="form-input" required>
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+        
+            <div class="form-section">
+                <label for="pago" class="form-label">Método de Pago (opcional):</label>
+                <input type="text" id="pago" name="pago" class="form-input" placeholder="Número de tarjeta o método preferido">
+            </div>
+
+          
+            <button type="submit" class="btn-continuar">Registrar</button>
+        </form>
+
+        <div class="footer">
+            <p><a href="#" class="help-link">¿Necesitas ayuda?</a></p>
+            <p><span class="separator">|</span> <a href="#" class="create-account-link">Crear una cuenta nueva</a></p>
+        </div>
+
+        <div class="brand-footer">
+            Ayrton - Gestión de Tiempo
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

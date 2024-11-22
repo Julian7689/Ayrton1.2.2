@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio de Tareas</title>
+    <link rel="stylesheet" href="style5.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1>Crear Nueva Tarea</h1>
+        <div class="task-creation">
+            <input type="text" id="taskName" placeholder="Nombre de la tarea" required>
+            <select id="taskPriority">
+                <option value="alta">Prioridad Alta</option>
+                <option value="media">Prioridad Media</option>
+                <option value="baja">Prioridad Baja</option>
+            </select>
+            <button id="addTask">Agregar Tarea</button>
+        </div>
+        
+        <div class="task-list">
+            <h2>Tareas Creadas</h2>
+            <ul id="taskContainer">
+                <!-- Las tareas agregadas aparecerán aquí -->
+            </ul>
+        </div>
+    
+        <div class="task-progress">
+            <h2>Progreso</h2>
+            <div class="progress">
+                <svg class="progress-circle" width="80" height="80">
+                    <circle r="30" cy="40" cx="40" stroke="lightgray" stroke-width="5" fill="none"></circle>
+                    <circle r="30" cy="40" cx="40" stroke="blue" stroke-width="5" fill="none" stroke-dasharray="188.4" stroke-dashoffset="188.4"></circle>
+                </svg>
+                <div class="number" id="progressNumber">0%</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addTaskButton = document.getElementById('addTask');
+            const taskContainer = document.getElementById('taskContainer');
+            const progressNumber = document.getElementById('progressNumber');
+            const circle = document.querySelector('.task-progress .progress circle:nth-child(2)');
+            
+            let totalTasks = 0;
+            let completedTasks = 0;
+
+            addTaskButton.addEventListener('click', () => {
+                const taskName = document.getElementById('taskName').value;
+                const taskPriority = document.getElementById('taskPriority').value;
+
+                if (taskName) {
+                    totalTasks++;
+                    const li = document.createElement('li');
+                    li.innerHTML = `${taskName} - Prioridad: ${taskPriority} <button class="completeTask">Completada</button>`;
+                    
+                    taskContainer.appendChild(li);
+                    updateProgress();
+
+                    li.querySelector('.completeTask').addEventListener('click', function() {
+                        completedTasks++;
+                        li.remove();
+                        updateProgress();
+                    });
+
+                    // Limpiar el campo de entrada después de agregar la tarea
+                    document.getElementById('taskName').value = '';
+                }
+            });
+
+            function updateProgress() {
+                const percentage = totalTasks ? (completedTasks / totalTasks) * 100 : 0;
+                setProgress(circle, percentage);
+                progressNumber.textContent = `${Math.round(percentage)}%`;
+            }
+
+            function setProgress(circle, percentage) {
+                const radius = circle.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                const offset = circumference - (percentage / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
+        });
+    </script>
+</body>
+</html>
